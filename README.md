@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**🚀 Intelligent News Monitoring with MCP Protocol Support**
+**Intelligent News Monitoring with MCP Protocol Support**
 
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-v1.0.0-blue.svg)](https://github.com/we-dotcom-1/Yun)
@@ -12,23 +12,50 @@
 
 ---
 
-## ✨ What is Yun?
+## Overview
 
-**Yun** is a fully functional MCP (Model Context Protocol) server for intelligent news aggregation and analysis. Based on the popular [TrendRadar](https://github.com/sansan0/TrendRadar) project, Yun provides a powerful AI interface for monitoring global news trends, analyzing sentiment, and discovering emerging topics.
+**Yun** is a fully functional MCP (Model Context Protocol) server for intelligent news aggregation and analysis. It provides a powerful AI interface for monitoring global news trends, analyzing sentiment, and discovering emerging topics across 35+ news platforms.
 
 ### Key Features
 
-- 🤖 **MCP Protocol Support** - Seamlessly integrate with AI assistants (Claude, Cherry Studio, Cursor, etc.)
-- 📊 **13 Analysis Tools** - From basic queries to advanced trend prediction
-- 🌐 **Multi-Platform** - Monitor 35+ news platforms (Zhihu, Weibo, Bilibili, TikTok, etc.)
-- 🔍 **Smart Search** - Keyword, fuzzy, and entity-based search capabilities
-- 📈 **Trend Analysis** - Track topic lifecycle, detect viral content, predict future trends
-- 🎯 **Sentiment Analysis** - AI-powered sentiment analysis with structured prompts
-- 🔗 **Cross-Platform Insights** - Compare coverage across different platforms
+- **MCP Protocol Support** - Seamlessly integrate with AI assistants (Claude, Cherry Studio, Cursor, etc.)
+- **13 Analysis Tools** - From basic queries to advanced trend prediction
+- **Multi-Platform** - Monitor 35+ news platforms (Zhihu, Weibo, Bilibili, TikTok, etc.)
+- **Smart Search** - Keyword, fuzzy, and entity-based search capabilities
+- **Trend Analysis** - Track topic lifecycle, detect viral content, predict future trends
+- **Sentiment Analysis** - AI-powered sentiment analysis with structured prompts
+- **Cross-Platform Insights** - Compare coverage across different platforms
 
 ---
 
-## 🚀 Quick Start
+## Architecture
+
+```mermaid
+graph TB
+    A[AI Client] -->|MCP Protocol| B[Yun MCP Server]
+    B --> C[Data Service Layer]
+    C --> D[Parser Service]
+    C --> E[Cache Service]
+    B --> F[Tool Modules]
+    F --> G[Data Query Tools]
+    F --> H[Analytics Tools]
+    F --> I[Search Tools]
+    F --> J[System Management]
+    D --> K[News Data Sources]
+    K --> L[Zhihu]
+    K --> M[Weibo]
+    K --> N[Bilibili]
+    K --> O[35+ Platforms]
+    
+    style A fill:#e3f2fd
+    style B fill:#fff3e0
+    style F fill:#e8f5e9
+    style K fill:#f3e5f5
+```
+
+---
+
+## Quick Start
 
 ### Prerequisites
 
@@ -76,7 +103,7 @@ The HTTP server will start at `http://localhost:3333/mcp`
 
 ---
 
-## 🔌 Connect to AI Clients
+## Connect to AI Clients
 
 ### Cherry Studio (Recommended for Beginners)
 
@@ -127,36 +154,128 @@ Create `.cursor/mcp.json` in your project:
 
 ---
 
-## 🛠️ Available Tools
+## Tool Categories & Workflow
 
-### 📋 Basic Data Query
-
-1. **get_latest_news** - Get the most recent news
-2. **get_news_by_date** - Query news by date (supports natural language)
-3. **get_trending_topics** - Get trending topics from your watchlist
-
-### 🔍 Intelligent Search
-
-4. **search_news** - Unified search (keyword/fuzzy/entity)
-5. **search_related_news_history** - Find related historical news
-
-### 📊 Advanced Analysis
-
-6. **analyze_topic_trend** - Topic trend analysis (heat/lifecycle/viral/prediction)
-7. **analyze_data_insights** - Data insights (platform comparison/activity/co-occurrence)
-8. **analyze_sentiment** - Sentiment analysis
-9. **find_similar_news** - Find similar news articles
-10. **generate_summary_report** - Generate daily/weekly summary reports
-
-### ⚙️ System Management
-
-11. **get_current_config** - Get current configuration
-12. **get_system_status** - System health check
-13. **trigger_crawl** - Manually trigger news crawling
+```mermaid
+graph LR
+    A[User Query] --> B{Tool Selection}
+    B -->|Basic Data| C[Data Query Tools]
+    B -->|Search| D[Search Tools]
+    B -->|Analysis| E[Analytics Tools]
+    B -->|System| F[System Tools]
+    
+    C --> G[get_latest_news]
+    C --> H[get_news_by_date]
+    C --> I[get_trending_topics]
+    
+    D --> J[search_news]
+    D --> K[search_related_news_history]
+    
+    E --> L[analyze_topic_trend]
+    E --> M[analyze_sentiment]
+    E --> N[analyze_data_insights]
+    E --> O[find_similar_news]
+    E --> P[generate_summary_report]
+    
+    F --> Q[get_current_config]
+    F --> R[get_system_status]
+    F --> S[trigger_crawl]
+    
+    G --> T[Results]
+    H --> T
+    I --> T
+    J --> T
+    K --> T
+    L --> T
+    M --> T
+    N --> T
+    O --> T
+    P --> T
+    Q --> T
+    R --> T
+    S --> T
+    
+    style A fill:#e3f2fd
+    style C fill:#fff3e0
+    style D fill:#e8f5e9
+    style E fill:#f3e5f5
+    style F fill:#fce4ec
+    style T fill:#c8e6c9
+```
 
 ---
 
-## 💡 Usage Examples
+## Available Tools
+
+### Basic Data Query
+
+| Tool | Description | Use Case |
+|------|-------------|----------|
+| `get_latest_news` | Get the most recent news | Quick overview of current events |
+| `get_news_by_date` | Query news by date (natural language) | Historical analysis, date-specific queries |
+| `get_trending_topics` | Get trending topics from watchlist | Monitor personal interests |
+
+### Intelligent Search
+
+| Tool | Description | Use Case |
+|------|-------------|----------|
+| `search_news` | Unified search (keyword/fuzzy/entity) | Find specific topics or content |
+| `search_related_news_history` | Find related historical news | Discover topic evolution |
+
+### Advanced Analysis
+
+| Tool | Description | Use Case |
+|------|-------------|----------|
+| `analyze_topic_trend` | Topic trend analysis | Track heat, lifecycle, viral detection |
+| `analyze_data_insights` | Platform comparison & activity stats | Cross-platform analysis |
+| `analyze_sentiment` | Sentiment analysis | Public opinion tracking |
+| `find_similar_news` | Find similar articles | Content deduplication |
+| `generate_summary_report` | Daily/weekly summaries | Periodic reporting |
+
+### System Management
+
+| Tool | Description | Use Case |
+|------|-------------|----------|
+| `get_current_config` | Get current configuration | System inspection |
+| `get_system_status` | System health check | Monitoring |
+| `trigger_crawl` | Manually trigger crawling | On-demand updates |
+
+---
+
+## Data Flow
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant AI
+    participant YunMCP
+    participant DataService
+    participant Parser
+    participant DataSource
+    
+    User->>AI: Natural language query
+    AI->>YunMCP: MCP tool call
+    YunMCP->>DataService: Request data
+    
+    alt Data in cache
+        DataService-->>YunMCP: Return cached data
+    else Data not cached
+        DataService->>Parser: Parse request
+        Parser->>DataSource: Fetch news data
+        DataSource-->>Parser: Raw data
+        Parser-->>DataService: Processed data
+        DataService->>DataService: Cache result
+        DataService-->>YunMCP: Return data
+    end
+    
+    YunMCP->>YunMCP: Format response
+    YunMCP-->>AI: Structured JSON
+    AI-->>User: Natural language response
+```
+
+---
+
+## Usage Examples
 
 ### Query Today's News
 
@@ -190,7 +309,7 @@ Create `.cursor/mcp.json` in your project:
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 Yun/
@@ -220,7 +339,7 @@ Yun/
 
 ---
 
-## 🎯 Configuration
+## Configuration
 
 ### Main Configuration (`config/config.yaml`)
 
@@ -247,27 +366,97 @@ ChatGPT
 
 ---
 
-## 🤝 Contributing
+## System Architecture Details
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+```mermaid
+graph TB
+    subgraph "MCP Server Core"
+        A[FastMCP Application]
+        B[Tool Registry]
+        C[Request Handler]
+    end
+    
+    subgraph "Service Layer"
+        D[Data Service]
+        E[Parser Service]
+        F[Cache Service]
+    end
+    
+    subgraph "Tool Modules"
+        G[Data Query]
+        H[Analytics]
+        I[Search]
+        J[Config]
+        K[System]
+    end
+    
+    subgraph "Utilities"
+        L[Validators]
+        M[Date Parser]
+        N[Error Handler]
+    end
+    
+    A --> B
+    B --> C
+    C --> G
+    C --> H
+    C --> I
+    C --> J
+    C --> K
+    
+    G --> D
+    H --> D
+    I --> D
+    J --> D
+    K --> D
+    
+    D --> E
+    D --> F
+    
+    G --> L
+    H --> L
+    I --> L
+    G --> M
+    H --> M
+    I --> M
+    
+    style A fill:#e3f2fd
+    style D fill:#fff3e0
+    style G fill:#e8f5e9
+    style L fill:#f3e5f5
+```
 
 ---
 
-## 📜 License
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+### Development Setup
+
+1. Clone the repository
+2. Run setup script
+3. Make your changes
+4. Test thoroughly
+5. Submit PR
+
+---
+
+## License
 
 This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) file for details.
 
 ---
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
-- Based on [TrendRadar](https://github.com/sansan0/TrendRadar) by [@sansan0](https://github.com/sansan0)
 - Built with [FastMCP](https://github.com/jlowin/fastmcp)
 - Data sourced from [NewsNow](https://github.com/ourongxing/newsnow)
+- MCP Protocol by [Anthropic](https://modelcontextprotocol.io/)
 
 ---
 
-## 📞 Support
+## Support
 
 - **GitHub Issues**: For bug reports and feature requests
 - **Discussions**: For questions and community support
@@ -276,9 +465,8 @@ This project is licensed under the GPL-3.0 License - see the [LICENSE](LICENSE) 
 
 <div align="center">
 
-**Made with ❤️ for the AI Community**
+**Made for the AI Community**
 
-[⭐ Star this repo](https://github.com/we-dotcom-1/Yun) if you find it useful!
+[Star this repo](https://github.com/we-dotcom-1/Yun) if you find it useful!
 
 </div>
-
